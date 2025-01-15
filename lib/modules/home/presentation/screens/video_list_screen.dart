@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:reels/core/services/api_service.dart';
 import 'package:reels/modules/home/data/models/video_model.dart';
 import 'package:reels/modules/home/presentation/widgets/reel_widget.dart';
@@ -30,7 +31,9 @@ class _VideoListScreenState extends State<VideoListScreen> {
             future: futureVideos,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(child: CircularProgressIndicator());
+                return Center(
+                    child:
+                        LottieBuilder.asset('assets/lottie/loadingBar.json'));
               } else if (snapshot.hasError) {
                 return Center(child: Text('Error: ${snapshot.error}'));
               } else if (snapshot.hasData) {
